@@ -76,7 +76,7 @@ FGfdmSocket::FGfdmSocket(const string& address, int port, int protocol)
         cout << "Could not get host net address by name..." << endl;
     }
 
-  if (host != NULL) {
+  if (true) {
     if (protocol == ptUDP) {  //use udp protocol
        sckt = socket(AF_INET, SOCK_DGRAM, 0);
        cout << "Creating UDP socket on port " << port << endl;
@@ -90,7 +90,8 @@ FGfdmSocket::FGfdmSocket(const string& address, int port, int protocol)
       memset(&scktName, 0, sizeof(struct sockaddr_in));
       scktName.sin_family = AF_INET;
       scktName.sin_port = htons(port);
-      memcpy(&scktName.sin_addr, host->h_addr_list[0], host->h_length);
+      scktName.sin_addr.s_addr =  htonl(INADDR_ANY);
+      //memcpy(&scktName.sin_addr, host->h_addr_list[0], host->h_length);
       int len = sizeof(struct sockaddr_in);
       if (connect(sckt, (struct sockaddr*)&scktName, len) == 0) {   // successful
         cout << "Successfully connected to socket for output ..." << endl;
