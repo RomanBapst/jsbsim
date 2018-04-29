@@ -63,6 +63,7 @@ INCLUDES
 #include "input_output/FGPropertyManager.h"
 #include "input_output/FGScript.h"
 #include "initialization/FGSimplexTrim.h"
+#include "models/FGPX4SimInterface.h"
 
 #include <iostream>
 #include <iterator>
@@ -653,6 +654,19 @@ bool FGFDMExec::LoadModel(string model, bool addModelToPath)
         idx++;
       }
       element = document->FindNextElement("output");
+    }
+
+    element = document->FindElement("px4sim");
+
+    if(element) {
+      FGPX4SimInterface* PX4Interface = new FGPX4SimInterface(this);
+      PX4Interface->InitModel();
+      Schedule(PX4Interface, 1);
+      result = PX4Interface->Load(element);
+
+      if (!result) {
+        cout << "Could not load PX4Interface model." << endl;
+      }
     }
 
     // Lastly, process the child element. This element is OPTIONAL - and NOT YET SUPPORTED.
