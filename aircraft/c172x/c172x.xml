@@ -23,6 +23,9 @@
         <version>$Revision: 1.84 $</version>
         <description>Models a 1997 Cessna 172R.</description>
     </fileheader>
+
+    <px4sim name="localhost" port="14560" rate="250"></px4sim>
+
     <metrics>
         <wingarea unit="FT2"> 174.0 </wingarea>
         <wingspan unit="FT"> 35.8 </wingspan>
