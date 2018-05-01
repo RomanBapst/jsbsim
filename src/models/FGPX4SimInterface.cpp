@@ -8,8 +8,8 @@
 #include <cstdlib>
 #include <fcntl.h>
 
-#include "../../../../mavlink/include/mavlink/v2.0/mavlink_types.h"
-#include "../../../../mavlink/include/mavlink/v2.0/common/mavlink.h"
+#include "../mavlink/include/mavlink/v2.0/mavlink_types.h"
+#include "../mavlink/include/mavlink/v2.0/common/mavlink.h"
 
 #if defined(WIN32) && !defined(__CYGWIN__)
 #  include <windows.h>
